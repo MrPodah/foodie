@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burger Category</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Neumorphic grid */
+    .neumorphic-grid {
+      background-color: #e0e0e0;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+    .neumorphic-grid:hover {
+      box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+      transform: scale(1.02);
+    }
+
+    /* Neumorphic icons */
+    .neumorphic-icon {
+      background-color: #e0e0e0;
+      border-radius: 50%;
+      padding: 8px;
+      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+    .neumorphic-icon:hover {
+      transform: scale(1.2) rotate(12deg);
+      box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+      color: #f87171; /* Color change on hover */
+    }
+
+    /* Neumorphic add-to-cart button */
+    .neumorphic-btn {
+      background-color: #e0e0e0;
+      border-radius: 50%;
+      padding: 8px;
+      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+    .neumorphic-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.6);
+      background-color: #4f46e5; /* Darker color on hover */
+      color: white;
+    }
+
+    /* Neumorphic hover effect for icons */
+    .neumorphic-btn:hover .material-icons {
+      color: #f87171;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+
+    <nav class="bg-gray-100 shadow-md p-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <span class="material-icons text-2xl neumorphic-icon">restaurant</span>
+            <span class="ml-2 text-xl font-bold">Foodie</span>
+        </div>
+    
+        <!-- Mobile toggle button -->
+        <button class="md:hidden text-2xl material-icons neumorphic-icon" onclick="toggleMenu()">menu</button>
+    
+        <!-- Navbar links -->
+        <div id="navbarMenu" class="hidden md:flex space-x-4">
+            <a href="index.html" class="flex items-center hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">home</span>
+                <span class="ml-2">Home</span>
+            </a>
+            <a href="dashbord.html" class="flex items-center hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">dashboard</span>
+                <span class="ml-2">Dashboard</span>
+            </a>
+            <a href="#" class="flex items-center hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">settings</span>
+                <span class="ml-2">Settings</span>
+            </a>
+            <a href="#" class="flex items-center hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">notifications</span>
+                <span class="ml-2">Notifications</span>
+            </a>
+            <a href="#" class="flex items-center hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">message</span>
+                <span class="ml-2">Messages</span>
+            </a>
+            <a href="login.html" class="flex items-center hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">account_circle</span>
+                <span class="ml-2">Profile</span>
+            </a>
+            <a href="#" class="flex items-center hover:text-red-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">logout</span>
+                <span class="ml-2">Logout</span>
+            </a>
+            <!-- Cart Icon -->
+            <a href="cart.html" class="flex items-center hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">shopping_cart</span>
+                <span class="ml-2">Cart</span>
+            </a>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="fixed inset-0 bg-white z-40 hidden flex-col items-start p-6 transition-transform transform -translate-x-full md:hidden">
+            <button class="text-2xl material-icons neumorphic-icon mb-4" onclick="closeMenu()">close</button>
+            <a href="index.html" class="flex items-center mb-4 hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">home</span>
+                <span class="ml-2">Home</span>
+            </a>
+            <a href="dashbord.html" class="flex items-center mb-4 hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">dashboard</span>
+                <span class="ml-2">Dashboard</span>
+            </a>
+            <a href="#" class="flex items-center mb-4 hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">settings</span>
+                <span class="ml-2">Settings</span>
+            </a>
+            <a href="#" class="flex items-center mb-4 hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">notifications</span>
+                <span class="ml-2">Notifications</span>
+            </a>
+            <a href="#" class="flex items-center mb-4 hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">message</span>
+                <span class="ml-2">Messages</span>
+            </a>
+            <a href="login.html" class="flex items-center mb-4 hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">account_circle</span>
+                <span class="ml-2">Profile</span>
+            </a>
+            <a href="#" class="flex items-center mb-4 hover:text-red-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">logout</span>
+                <span class="ml-2">Logout</span>
+            </a>
+            <!-- Mobile Cart Icon -->
+            <a href="cart.html" class="flex items-center mb-4 hover:text-gray-600" onclick="closeMenu()">
+                <span class="material-icons neumorphic-icon">shopping_cart</span>
+                <span class="ml-2">Cart</span>
+            </a>
+        </div>
+    </nav>
+    
+  <!-- Category: Burgers -->
+  <div class="container mx-auto py-12 mt-16">
+    <h1 class="text-4xl font-bold text-center mb-12">Pizza Category</h1>
+
+      <!-- Grid layout -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <!-- Burger Item 1 -->
+      <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="1.jpg" alt="Cheeseburger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Cheeseburger</h3>
+        <p class="mt-2 text-gray-600">$5.99</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+      <!-- Burger Item 2 -->
+      <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="2.jpg" alt="Chicken Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Chicken Burger</h3>
+        <p class="mt-2 text-gray-600">$6.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+      <!-- Burger Item 3 -->
+      <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="3.jpg" alt="Veggie Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Veggie Burger</h3>
+        <p class="mt-2 text-gray-600">$4.99</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+      <!-- Burger Item 4 -->
+      <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="4.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+       <!-- Burger Item 4 -->
+       <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="5.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div> <!-- Burger Item 4 -->
+      <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="6.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+       <!-- Burger Item 4 -->
+       <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="7.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+       <!-- Burger Item 4 -->
+       <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="9.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+       <!-- Burger Item 4 -->
+       <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="8.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+       <!-- Burger Item 4 -->
+       <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="11.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+       <!-- Burger Item 4 -->
+       <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="12.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+
+       <!-- Burger Item 4 -->
+       <div class="neumorphic-grid flex flex-col items-center p-6">
+        <img src="13.jpg" alt="Bacon Burger" class="w-full h-32 object-cover rounded-md">
+        <h3 class="mt-4 text-lg font-bold">Bacon Burger</h3>
+        <p class="mt-2 text-gray-600">$7.49</p>
+        <!-- Neumorphic Add to Cart Icon -->
+        <a href="#" class="mt-4 neumorphic-btn flex items-center justify-center">
+          <span class="material-icons">add_shopping_cart</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function toggleMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.toggle('hidden'); // Show/Hide the mobile menu
+    mobileMenu.classList.toggle('transform'); // Allow for transition effects
+    mobileMenu.classList.toggle('-translate-x-full'); // Slide in/out effect
+}
+
+function closeMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.add('hidden'); // Hide the mobile menu
+    mobileMenu.classList.add('-translate-x-full'); // Slide out effect
+}
+
+
+  </script>
+</body>
+</html>

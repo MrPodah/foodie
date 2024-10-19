@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Login/Signup</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Neumorphism styles */
+        body {
+            background-color: #e0e5ec;
+            font-family: Arial, sans-serif;
+        }
+        .neumorphic-form {
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            max-width: 400px;
+            margin: auto;
+        }
+        .input-icon {
+            position: relative;
+        }
+        .input-icon input {
+            padding-left: 40px;
+        }
+        .input-icon .material-icons {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+        .button {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), 
+                        inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+        }
+        .button:hover {
+            background: #34495e;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .toggle-link {
+            cursor: pointer;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <div class="neumorphic-form" id="authForm">
+        <h2 class="text-center font-bold text-xl mb-6" id="formTitle">Login</h2>
+        <form id="loginForm">
+            <div class="input-icon mb-4">
+                <span class="material-icons">email</span>
+                <input type="email" placeholder="Email" class="border border-gray-300 rounded-lg p-2 w-full" required>
+            </div>
+            <div class="input-icon mb-4">
+                <span class="material-icons">lock</span>
+                <input type="password" placeholder="Password" class="border border-gray-300 rounded-lg p-2 w-full" required>
+            </div>
+            <button type="submit" class="button w-full">Login</button>
+        </form>
+        <p class="text-center mt-4">Don't have an account? <span class="toggle-link" id="showSignup">Sign Up</span></p>
+    </div>
+
+    <div class="neumorphic-form hidden" id="signupForm">
+        <h2 class="text-center font-bold text-xl mb-6">Sign Up</h2>
+        <form id="registerForm">
+            <div class="input-icon mb-4">
+                <span class="material-icons">person</span>
+                <input type="text" placeholder="Full Name" class="border border-gray-300 rounded-lg p-2 w-full" required>
+            </div>
+            <div class="input-icon mb-4">
+                <span class="material-icons">email</span>
+                <input type="email" placeholder="Email" class="border border-gray-300 rounded-lg p-2 w-full" required>
+            </div>
+            <div class="input-icon mb-4">
+                <span class="material-icons">lock</span>
+                <input type="password" placeholder="Password" class="border border-gray-300 rounded-lg p-2 w-full" required>
+            </div>
+            <div class="input-icon mb-4">
+                <span class="material-icons">lock</span>
+                <input type="password" placeholder="Confirm Password" class="border border-gray-300 rounded-lg p-2 w-full" required>
+            </div>
+            <button type="submit" class="button w-full">Sign Up</button>
+        </form>
+        <p class="text-center mt-4">Already have an account? <span class="toggle-link" id="showLogin">Login</span></p>
+    </div>
+
+    <script>
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const authForm = document.getElementById('authForm');
+        const signupForm = document.getElementById('signupForm');
+
+        showSignup.addEventListener('click', () => {
+            authForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+        });
+
+        showLogin.addEventListener('click', () => {
+            signupForm.classList.add('hidden');
+            authForm.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

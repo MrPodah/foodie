@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <title>Cart Page</title>
+    <style>
+        /* Custom styles for glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .neumorphic {
+            box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2),
+                        -8px -8px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .neumorphic:hover {
+            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.2),
+                        -6px -6px 15px rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .product {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-6">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">Shopping Cart</h1>
+
+        <!-- Grid of Products -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+            <div class="glass p-4 rounded-lg neumorphic product" onclick="addToCart('Cheeseburger', 5.99)">
+                <img src="images/1.jpg" alt="Cheeseburger" class="w-full h-32 object-cover rounded-md mb-2">
+                <h3 class="text-lg font-semibold">Cheeseburger</h3>
+                <p class="text-gray-600">$5.99</p>
+                <span class="material-icons text-blue-500">add_shopping_cart</span>
+            </div>
+
+            <div class="glass p-4 rounded-lg neumorphic product" onclick="addToCart('Pepperoni Pizza', 8.99)">
+                <img src="images/11.jpg" alt="Pepperoni Pizza" class="w-full h-32 object-cover rounded-md mb-2">
+                <h3 class="text-lg font-semibold">Pepperoni Pizza</h3>
+                <p class="text-gray-600">$8.99</p>
+                <span class="material-icons text-blue-500">add_shopping_cart</span>
+            </div>
+
+            <div class="glass p-4 rounded-lg neumorphic product" onclick="addToCart('French Fries', 2.49)">
+                <img src="images/2.jpg" alt="French Fries" class="w-full h-32 object-cover rounded-md mb-2">
+                <h3 class="text-lg font-semibold">French Fries</h3>
+                <p class="text-gray-600">$2.49</p>
+                <span class="material-icons text-blue-500">add_shopping_cart</span>
+            </div>
+
+            <div class="glass p-4 rounded-lg neumorphic product" onclick="addToCart('Coca Cola', 1.99)">
+                <img src="images/3.jpg" alt="Coca Cola" class="w-full h-32 object-cover rounded-md mb-2">
+                <h3 class="text-lg font-semibold">Coca Cola</h3>
+                <p class="text-gray-600">$1.99</p>
+                <span class="material-icons text-blue-500">add_shopping_cart</span>
+            </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="glass p-6 mb-6 neumorphic">
+            <h2 class="text-2xl font-bold mb-4">Your Cart</h2>
+            <div id="cart-items" class="space-y-4">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="glass p-6 mb-6 neumorphic">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold">Subtotal</h2>
+                <p id="subtotal" class="text-lg">$0.00</p>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                <h2 class="text-xl font-bold">Total</h2>
+                <p id="total" class="text-lg">$0.00</p>
+            </div>
+        </div>
+
+        <!-- Checkout Button -->
+        <div class="flex justify-center">
+            <a href="checkout.html" class="bg-blue-500 text-white py-2 px-6 rounded-md neumorphic hover:bg-blue-600 transition">
+                Checkout
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let subtotal = 0;
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1; // Increase quantity if item already in cart
+            } else {
+                cart.push({ name, price, quantity: 1 }); // Add new item to cart
+            }
+            updateCart();
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name); // Remove item from cart
+            updateCart();
+        }
+
+        function increaseQuantity(name) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += 1; // Increase item quantity
+                updateCart();
+            }
+        }
+
+        function decreaseQuantity(name) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity -= 1; // Decrease item quantity
+                if (item.quantity <= 0) {
+                    removeFromCart(name); // Remove item if quantity is zero
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = ''; // Clear current cart items
+
+            subtotal = 0; // Reset subtotal
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('flex', 'justify-between', 'items-center', 'border-b', 'border-gray-300', 'pb-4');
+                itemElement.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span class="text-gray-600">$${(item.price * item.quantity).toFixed(2)}</span>
+                    <div>
+                        <button class="text-blue-500" onclick="increaseQuantity('${item.name}')">
+                            <span class="material-icons">add_circle</span>
+                        </button>
+                        <button class="text-red-500" onclick="decreaseQuantity('${item.name}')">
+                            <span class="material-icons">remove_circle</span>
+                        </button>
+                        <button class="text-red-600" onclick="removeFromCart('${item.name}')">
+                            <span class="material-icons">delete</span>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+                subtotal += item.price * item.quantity; // Calculate subtotal
+            });
+
+            // Update subtotal and total
+            document.getElementById('subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('total').innerText = `$${subtotal.toFixed(2)}`;
+        }
+    </script>
+</body>
+
+</html>

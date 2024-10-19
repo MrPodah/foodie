@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food Restaurant Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Neumorphism styles */
+        body {
+            background-color: #e0e5ec;
+            font-family: Arial, sans-serif;
+        }
+        .neumorphic-card {
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            margin: 1rem;
+        }
+        .sidebar {
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.9);
+        }
+        .button {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), 
+                        inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+        }
+        .button:hover {
+            background: #34495e;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                transition: left 0.3s ease;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .toggle-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- Sidebar -->
+    <aside class="sidebar bg-gray-200 w-64 h-screen rounded-lg p-4">
+        <h2 class="text-2xl font-bold text-center mb-6">Admin Dashboard</h2>
+        <ul class="space-y-4">
+            <li><a href="#" class="menu-item flex items-center text-gray-700 hover:text-blue-500"><span class="material-icons">dashboard</span> Dashboard</a></li>
+            <li><a href="#" class="menu-item flex items-center text-gray-700 hover:text-blue-500"><span class="material-icons">local_pizza</span> Menu</a></li>
+            <li><a href="#" class="menu-item flex items-center text-gray-700 hover:text-blue-500"><span class="material-icons">shopping_cart</span> Orders</a></li>
+            <li><a href="#" class="menu-item flex items-center text-gray-700 hover:text-blue-500"><span class="material-icons">analytics</span> Reports</a></li>
+            <li><a href="#" class="menu-item flex items-center text-gray-700 hover:text-blue-500"><span class="material-icons">settings</span> Settings</a></li>
+            <li><a href="#" class="menu-item flex items-center text-gray-700 hover:text-blue-500"><span class="material-icons">logout</span> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <!-- Toggle Button -->
+        <div class="flex items-center justify-between mb-4">
+            <button class="toggle-btn text-gray-700 md:hidden" onclick="toggleSidebar()">
+                <span class="material-icons">menu</span>
+            </button>
+            <h1 class="text-3xl font-bold">Overview</h1>
+            <a href="additem.html" class="button">Add New Item</a>
+        </div>
+        
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Sales Chart -->
+            <div class="neumorphic-card">
+                <h2 class="text-xl font-bold mb-4">Sales Overview</h2>
+                <canvas id="salesChart"></canvas>
+            </div>
+
+            <!-- Orders Chart -->
+            <div class="neumorphic-card">
+                <h2 class="text-xl font-bold mb-4">Orders Overview</h2>
+                <canvas id="ordersChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <!-- Total Sales -->
+            <div class="neumorphic-card text-center">
+                <h3 class="text-lg font-bold">Total Sales</h3>
+                <p class="text-3xl text-blue-600">$25,000</p>
+            </div>
+
+            <!-- Total Orders -->
+            <div class="neumorphic-card text-center">
+                <h3 class="text-lg font-bold">Total Orders</h3>
+                <p class="text-3xl text-green-600">1,200</p>
+            </div>
+
+            <!-- New Customers -->
+            <div class="neumorphic-card text-center">
+                <h3 class="text-lg font-bold">New Customers</h3>
+                <p class="text-3xl text-orange-600">300</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sales Chart
+        const ctxSales = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(ctxSales, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [15000, 20000, 18000, 22000, 25000, 30000, 35000],
+                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                    borderColor: 'rgba(52, 152, 219, 1)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Orders Chart
+        const ctxOrders = document.getElementById('ordersChart').getContext('2d');
+        const ordersChart = new Chart(ctxOrders, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Orders',
+                    data: [200, 250, 300, 350, 400, 450, 500],
+                    backgroundColor: 'rgba(231, 76, 60, 0.6)',
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Toggle Sidebar Function
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar on menu item click
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

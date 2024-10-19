@@ -1,0 +1,160 @@
+.material-icons {
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for transform and color */
+}
+
+.material-icons:hover {
+    transform: scale(1.1) rotate(12deg); /* Scale and rotate for 3D effect */
+}
+
+    /* Neumorphic shadow for icons */
+    .shadow-neumorphic {
+        box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Hover neumorphic shadow */
+    .shadow-neumorphic-hover {
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -10px -10px 20px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Neumorphic effect on icons */
+    .neumorphic-icon {
+        box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        padding: 10px;
+        background-color: #e0e0e0;
+    }
+
+    /* Neumorphic shadow effect for icons */
+    .neumorphic-icon {
+        background-color: #e0e0e0;
+        border-radius: 50%;
+        padding: 8px;
+        box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+    }
+
+    /* 3D hover effect */
+    .neumorphic-icon:hover {
+        transform: scale(1.1) rotate(12deg);
+        box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+        color: #f87171; /* Optional color change on hover */
+    }
+
+    /* Custom colors for each icon on hover */
+    .neumorphic-icon:hover:hover {
+        color: #f87171; /* Example: Red for logout */
+    }
+
+    /* Neumorphic grid container */
+.neumorphic-grid {
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect for the grid */
+  .neumorphic-grid:hover {
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+    transform: scale(1.02);
+  }
+  
+  /* Neumorphic icons */
+  .neumorphic-icon {
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    padding: 8px;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+  
+  /* Icon 3D effect on hover */
+  .neumorphic-icon:hover {
+    transform: scale(1.2) rotate(12deg);
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+    color: #f87171; /* Optional color change on hover */
+  }
+  
+  /* Neumorphic buttons for 'Add to Cart' */
+  .neumorphic-btn {
+    background-color: #e0e0e0;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect for buttons */
+  .neumorphic-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.6);
+    background-color: #4f46e5; /* Darker blue on hover */
+  }
+/* Neumorphism styles */
+.neumorphic-grid {
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), 
+              -8px -8px 15px rgba(255, 255, 255, 0.9);
+}
+
+.neumorphic-btn {
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), 
+              inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+}
+
+.neumorphic-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Optional: For the transition effect on hover */
+.transition-shadow {
+  transition: box-shadow 0.3s ease;
+}
+ /* Neumorphic grid */
+ .neumorphic-grid {
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+.neumorphic-grid:hover {
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+  transform: scale(1.02);
+}
+
+/* Neumorphic icons */
+.neumorphic-icon {
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+.neumorphic-icon:hover {
+  transform: scale(1.2) rotate(12deg);
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+  color: #f87171; /* Color change on hover */
+}
+
+/* Neumorphic add-to-cart button */
+.neumorphic-btn {
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15), -8px -8px 16px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+.neumorphic-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.6);
+  background-color: #4f46e5; /* Darker color on hover */
+  color: white;
+}
+
+/* Neumorphic hover effect for icons */
+.neumorphic-btn:hover .material-icons {
+  color: #f87171;
+}
